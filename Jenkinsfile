@@ -1,6 +1,8 @@
 stage('checkout'){
    // checkout code
-   git 'git@github.com:darinpope/offline-update-center.git'
+   node {
+      git 'git@github.com:darinpope/offline-update-center.git'
+   }
 }
 
 stage('build'){
