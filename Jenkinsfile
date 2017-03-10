@@ -1,4 +1,4 @@
-stage build {
+stage('build'){
 
    node {
       parallel (
