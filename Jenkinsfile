@@ -4,6 +4,8 @@ stage('checkout'){
    // checkout code
    node {
       git 'git@github.com:darinpope/offline-update-center.git'
+      sh "echo running test"
+      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [content: 'Test past']])
    }
 }
 
