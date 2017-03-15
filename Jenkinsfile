@@ -3,7 +3,8 @@ println "The build is " + env.BUILD_NUMBER
 stage('checkout'){
    // checkout code
    node {
-      git 'git@github.com:darinpope/offline-update-center.git'
+      git 'git@github.com:sitUboo/Yui.git'
+//      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
       step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [content: 'Test past']])
    }
