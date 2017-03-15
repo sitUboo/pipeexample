@@ -6,7 +6,7 @@ stage('checkout'){
       git 'git@github.com:sitUboo/Yui.git'
 //      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
-      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [content: 'Test past']])
+      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [state: 'success', content: 'Code Checks Passed']])
    }
 }
 
@@ -19,5 +19,6 @@ stage('build'){
       )
       println "The build is " + env.BUILD_NUMBER
       sh "echo run this after both phases complete"
+      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [state: 'success', content: 'Compile Passed']])
    }
 }
