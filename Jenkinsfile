@@ -1,4 +1,5 @@
 println "The build is " + env.BUILD_NUMBER
+println "The commit is " + env.GIT_COMMIT
 
 stage('checkout'){
    // checkout code
@@ -10,7 +11,7 @@ stage('checkout'){
 //        step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Code Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
       step([
         $class: "GitHubCommitStatusSetter",
-        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitCommit],
+        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: env.GIT_COMMIT],
         //reposSource: [$class: "AnyDefinedRepositorySource"],
         reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/sitUboo/Yui" ],
         contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/foo" ],
