@@ -6,7 +6,6 @@ stage('checkout'){
       git 'git@github.com:cloudbees/customers.git'
       gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
       sh "echo running test"
-      sh 'curl -H "Content-Type: application/json" --data @/Users/stevendeal/CloudBees/customers/message.json -u sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c https://api.github.com/repos/cloudbees/customers/statuses/7b4b6a41e6f98806f1f330720bfb909f2597fd24'
 //
 }
 exit
