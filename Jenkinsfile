@@ -3,20 +3,17 @@ println "The build is " + env.BUILD_NUMBER
 stage('checkout'){
    // checkout code
    node {
-      git 'git@github.com:sitUboo/Yui.git'
+      git 'git@git@github.com:cloudbees/customers.git'
       gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
 //      git 'git@github.com:darinpope/offline-update-center.git'
-      println "The branch is " + env.GIT_BRANCH
       sh "echo running test"
-//      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [state: 'success', content: 'Code Checks Passed']])
-//        step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Code Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
       step([
         $class: "GitHubCommitStatusSetter",
         commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitSha],
         //reposSource: [$class: "AnyDefinedRepositorySource"],
-        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/sitUboo/Yui" ],
-        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/foo" ],
-        errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/cloudbees/customers.git" ],
+        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/blah/foo" ],
+        errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "STABLE"]],
         statusResultSource: [ $class: "ConditionalStatusResultSource", results: [
             [$class: "AnyBuildResult", message: 'Test', state: 'success']] ]
       ]);
