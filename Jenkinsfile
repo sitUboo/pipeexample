@@ -1,10 +1,11 @@
 println "The build is " + env.BUILD_NUMBER
-println "The commit is " + env.GIT_COMMIT
 
 stage('checkout'){
    // checkout code
    node {
       git 'git@github.com:sitUboo/Yui.git'
+      sh "git status"
+      exit
 //      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
 //      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [state: 'success', content: 'Code Checks Passed']])
