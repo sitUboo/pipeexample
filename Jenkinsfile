@@ -18,8 +18,8 @@ stage('checkout'){
 //            [$class: "AnyBuildResult", message: 'Test', state: 'success']] ]
 //      ]);
 //   }
-     sh "echo \{ \"state\": \"success\",\n\"target_url\": \"https://testing.com/build/status\",\n\"description\": \"The test succeeded!\",\n\"context\": \"some-content/blah\"\} > messages.json"
-     sh "curl -H \"Content-Type: application/json\" --data @message.json -u sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c https://api.github.com/repos/cloudbees/customers/statuses/${gitSha}"
+//     sh "echo \{ \"state\": \"success\",\n\"target_url\": \"https://testing.com/build/status\",\n\"description\": \"The test succeeded!\",\n\"context\": \"some-content/blah\"\} > messages.json"
+     sh "curl -H \"Content-Type: application/json\" --data @/Users/stevendeal/CloudBees/customers/message.json -u sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c https://api.github.com/repos/cloudbees/customers/statuses/${gitSha}"
 }
 
 stage('build'){
