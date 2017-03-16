@@ -4,15 +4,14 @@ stage('checkout'){
    // checkout code
    node {
       git 'git@github.com:sitUboo/Yui.git'
-      sh "git status"
-      exit
+      gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
 //      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
 //      step([$class: 'GitHubSetCommitStatusBuilder', statusMessage: [state: 'success', content: 'Code Checks Passed']])
 //        step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Code Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
       step([
         $class: "GitHubCommitStatusSetter",
-        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: env.GIT_COMMIT],
+        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitSHA],
         //reposSource: [$class: "AnyDefinedRepositorySource"],
         reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/sitUboo/Yui" ],
         contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/foo" ],
