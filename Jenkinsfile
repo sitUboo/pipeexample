@@ -11,7 +11,7 @@ stage('checkout'){
 //        step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Code Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
       step([
         $class: "GitHubCommitStatusSetter",
-        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitSHA],
+        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitSha],
         //reposSource: [$class: "AnyDefinedRepositorySource"],
         reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/sitUboo/Yui" ],
         contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/foo" ],
