@@ -3,7 +3,8 @@ println "The build is " + env.BUILD_NUMBER
 stage('checkout'){
    // checkout code
    node {
-      git credentialsId: 'sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c', url: 'ssh://git@github.com:cloudbees/customers.git'
+      git 'git@github.com:cloudbees/customers.git'
+//      git credentialsId: 'sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c', url: 'ssh://git@github.com:cloudbees/customers.git'
       gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
 //      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
