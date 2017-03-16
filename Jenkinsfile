@@ -16,8 +16,8 @@ stage('checkout'){
 //        statusResultSource: [ $class: "ConditionalStatusResultSource", results: [
 //            [$class: "AnyBuildResult", message: 'Test', state: 'success']] ]
 //      ]);
-   }
      sh "curl -H \"Content-Type: application/json\" --data @/Users/stevendeal/CloudBees/customers/message.json -u sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c https://api.github.com/repos/cloudbees/customers/statuses/${gitSha}"
+   }
 }
 
 stage('build'){
