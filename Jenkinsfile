@@ -5,7 +5,6 @@ stage('checkout'){
    node {
       git 'git@github.com:cloudbees/customers.git'
       gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
-//      git 'git@github.com:darinpope/offline-update-center.git'
       sh "echo running test"
 //      step([
 //        $class: "GitHubCommitStatusSetter",
@@ -19,6 +18,7 @@ stage('checkout'){
 //      ]);
 //   }
 //     sh "curl -H \"Content-Type: application/json\" --data @/Users/stevendeal/CloudBees/customers/message.json -u sitUboo:45d5a484c14ead76192757a6c2566a55c06e542c https://api.github.com/repos/cloudbees/customers/statuses/\"${gitSha}\""
+//
 }
 exit
 stage('build'){
