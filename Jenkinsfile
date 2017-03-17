@@ -3,22 +3,20 @@ println "The build is " + env.BUILD_NUMBER
 stage('checkout'){
    // checkout code
    node {
-      withCredentials([string(credentialsId: '515e6bbd-7fd2-48ea-ae16-1140719c7df5')]){
       //git credentialsId: '515e6bbd-7fd2-48ea-ae16-1140719c7df5', url: 'git@github.com:cloudbees/customers.git'
-        git url: 'git@github.com:cloudbees/customers.git'
-        gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
-        sh "echo running test"
-        step([
-          $class: 'GitHubCommitStatusSetter',
-          commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
-          reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
-          statusBackrefSource: [ $class: 'BuildRefBackrefSource' ],
-          contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
-          statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
+        step(
+           git url: 'git@github.com:cloudbees/customers.git'
+           gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
+           sh "echo running test"
+           [$class: 'GitHubCommitStatusSetter',
+             commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
+             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
+             statusBackrefSource: [ $class: 'BuildRefBackrefSource' ],
+             contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
+             statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
         ]);
        }
 //step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
-   }
 }
 
 stage('build'){
