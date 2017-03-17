@@ -10,6 +10,7 @@ stage('checkout'){
         $class: 'GitHubCommitStatusSetter',
         commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
         reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
+        statusBackrefSource: [ $class: 'BuildRefBackrefSource' ],
         contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
         statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
       ]);
