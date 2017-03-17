@@ -7,13 +7,12 @@ stage('checkout'){
       gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
       sh "echo running test"
       step([
-        $class: "GitHubCommitStatusSetter",
-        commitShaSource: [$class: "ManuallyEnteredShaSource", sha: gitSha],
-        //reposSource: [$class: "AnyDefinedRepositorySource"],
-        reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/cloudbees/customers" ],
-        contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "Quality Checks Passed" ],
-        statusResultSource: [ $class: "ConditionalStatusResultSource", results: [
-            [$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
+        $class: 'GitHubCommitStatusSetter',
+        commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
+        //reposSource: [$class: 'AnyDefinedRepositorySource'],
+        reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
+        contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
+        statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
       ]);
 //step([$class: 'GitHubCommitStatusSetter', contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed'], statusResultSource: [$class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', state: 'SUCCESS', message: "Succeeded"]]]])
    }
