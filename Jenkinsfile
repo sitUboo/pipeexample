@@ -15,8 +15,9 @@ stage('checkout'){
 //             statusBackrefSource: [ $class: 'BuildRefBackrefSource' ],
 //             contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
 //             statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
-        ]};
-       }
+      //  ]
+       };
+   }
 }
 
 stage('build'){
