@@ -5,9 +5,7 @@ println "The name is ${name}"
 stage('checkout'){
    // checkout code
    node {
-        step{
            git credentialsId: '515e6bbd-7fd2-48ea-ae16-1140719c7df5', url: 'git@github.com:cloudbees/customers.git'
-           gitSha = sh(returnStdout: true, script: 'cat ./.git/refs/heads/master').trim()
            sh "echo running test"
 //           [$class: 'GitHubCommitStatusSetter',
 //             commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
@@ -16,7 +14,6 @@ stage('checkout'){
 //             contextSource: [$class: 'ManuallyEnteredCommitContextSource', context: 'Quality Checks Passed' ],
 //             statusResultSource: [ $class: 'ConditionalStatusResultSource', results: [[$class: 'AnyBuildResult', message: 'Succeeded', state: 'SUCCESS']] ]
       //  ]
-       };
    }
 }
 
