@@ -3,6 +3,7 @@ println "The build is " + env.BUILD_NUMBER
 stage('checkout'){
    // checkout code
    node {
+           properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
            git credentialsId: '4cd42b1e-4f9c-4997-9901-658bb830a3ef', url: 'git@github.com:sitUboo/Yui.git'
            sh "echo running build..."
 //           [$class: 'GitHubCommitStatusSetter',
