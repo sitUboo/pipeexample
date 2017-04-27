@@ -5,7 +5,8 @@ stage('checkout'){
    node {
            properties([pipelineTriggers([[$class: 'GitHubPushTrigger'], pollSCM('H/15 * * * *')])])
            git credentialsId: '4cd42b1e-4f9c-4997-9901-658bb830a3ef', url: 'git@github.com:sitUboo/Yui.git', branch: env.BRANCH_NAME 
-           sh "echo running build... ${env.GIT_BRANCH}"
+           println "The build is using branch " + env.BRANCH_NAME
+           sh "echo running build..."
 //           [$class: 'GitHubCommitStatusSetter',
 //             commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
 //             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
