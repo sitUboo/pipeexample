@@ -1,12 +1,10 @@
 println "The build is " + env.BUILD_NUMBER
 
-println "The name is ${name}"
-
 stage('checkout'){
    // checkout code
    node {
-           git credentialsId: '515e6bbd-7fd2-48ea-ae16-1140719c7df5', url: 'git@github.com:cloudbees/customers.git'
-           sh "echo running test"
+           git credentialsId: '515e6bbd-7fd2-48ea-ae16-1140719c7df5', url: 'git@github.com:sitUboo/Yui.git'
+           sh "echo running build..."
 //           [$class: 'GitHubCommitStatusSetter',
 //             commitShaSource: [$class: 'ManuallyEnteredShaSource', sha: gitSha],
 //             reposSource: [$class: 'ManuallyEnteredRepositorySource', url: 'https://github.com/cloudbees/customers' ],
