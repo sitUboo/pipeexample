@@ -2,6 +2,8 @@
 stage('s1'){
    node('linux') {
        sh "echo running build..."
+       @Grab(group='org.springframework', module='spring-orm', version='3.2.5.RELEASE')
+       import org.springframework.jdbc.core.JdbcTemplate
    }
 }
 
@@ -17,6 +19,13 @@ stage('s2'){
 }
 
 stage('s3'){
+   node('linux') {
+      try {
+         sh "wget http://www.somexyzurlicantfind.com"
+      } catch (err){ 
+         sh "echo this is the catch block"
+     } 
+   }
    node('linux') {
        sh "echo running build...s3"
    }
