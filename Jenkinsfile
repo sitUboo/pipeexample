@@ -18,13 +18,13 @@ stage('s3'){
      } 
    }
    node('linux') {
-       sh "echo running build...s3"
+       sh "echo running build....s3"
    }
 }
 
 stage('s4'){
    node('linux') {
-       sh "echo running build...s4"
+       sh "echo running build....s4"
    }
 }
 
