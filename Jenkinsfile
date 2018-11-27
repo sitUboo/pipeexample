@@ -12,7 +12,7 @@ stage('s2'){
 stage('s3'){
    node('linux') {
       try {
-         sh "wget http://www.somexyzurlicantfind.com"
+         sh "wget http://www.some_xyz_urlicantfind.com"
       } catch (err){ 
          sh "echo this is the catch block"
      } 
