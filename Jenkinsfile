@@ -14,7 +14,7 @@ stage('s3'){
       try {
          sh "wget http://www.somexyzurlicantfind.com"
       } catch (err){ 
-         sh "echo this is the catch block..."
+         sh "echo this is the catch block"
      } 
    }
    node('linux') {
