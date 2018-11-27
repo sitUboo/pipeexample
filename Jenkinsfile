@@ -30,6 +30,6 @@ stage('s4'){
 
 stage('s5'){
    node('linux') {
-       sh "echo running build...s5"
+       sh "echo running build...s5."
    }
 }
