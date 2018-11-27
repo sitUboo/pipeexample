@@ -33,3 +33,9 @@ stage('s5'){
        sh "echo running build...s5."
    }
 }
+
+stage('s6'){
+   node('linux') {
+       sh "echo running build...s6."
+   }
+}
