@@ -84,7 +84,7 @@ pipeline {
     propertyFile = "${propertyFile}"
     gitPropertyRepo = "${gitPropertyRepo}"
     gitPropertyRepoUrl = "${gitPropertyRepoUrl}"
-    gitcredID = 'a000107'
+    gitcredID = ""
     gitPropertyBranch = "${gitPropertyBranch}"
     
   }
