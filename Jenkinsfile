@@ -30,7 +30,7 @@ pipeline {
       steps 
       {
         echo 'Clean workspace'
-        cleanWs()
+        //cleanWs()
       }
     }
 
