@@ -64,9 +64,6 @@ pipeline {
       
       //Checkout code from the branch parameter only for the Build/dev job.
       stage('Checkout') {
-      when{
-        expression { (jobTypeName == 'dev') || (jobTypeName == 'Build')  }
-      }
       steps {
          
          echo 'Checking Out CODE from '+checkoutBranch+''
