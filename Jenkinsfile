@@ -4,6 +4,25 @@ pipeline {
   // Run the pipeline on a specified agent
   agent any
 
+  
+ //Environemnt variables defined in the job configuration are pulled here.
+  environment {
+    
+    propertyFile = "${propertyFile}"
+    gitPropertyRepo = "${gitPropertyRepo}"
+    gitPropertyRepoUrl = "${gitPropertyRepoUrl}"
+    gitcredID = ""
+    gitPropertyBranch = "${gitPropertyBranch}"
+    
+  }
+
+  options {
+    timestamps()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3'))
+    disableConcurrentBuilds()
+  }
+
+  
   stages {
     
     stage('cleanup') 
@@ -52,8 +71,8 @@ pipeline {
           artifactoryReleaseRepoPath = property.artifactoryReleaseRepoPath
           pollingFrequency = property.pollingInterval
               
-            properties([[$class: 'JiraProjectProperty'], [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], parameters([string(defaultValue: '', description: 'Enter the branch name.', name: 'BRANCH_NAME', trim: true)])])
-            checkoutBranch = BRANCH_NAME
+            //properties([[$class: 'JiraProjectProperty'], [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], parameters([string(defaultValue: '', description: 'Enter the branch name.', name: 'BRANCH_NAME', trim: true)])])
+            //checkoutBranch = BRANCH_NAME
           
 
           }
@@ -68,7 +87,7 @@ pipeline {
          
          echo 'Checking Out CODE from '+checkoutBranch+''
             
-            checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: checkoutBranch]], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: gitcredID, url: repoUrl]]]
+            checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: gitcredID, url: repoUrl]]]
 
             sh "ls -ltra"
             sh "pwd"
@@ -77,23 +96,6 @@ pipeline {
        }
 }
     
-
- //Environemnt variables defined in the job configuration are pulled here.
-  environment {
-    
-    propertyFile = "${propertyFile}"
-    gitPropertyRepo = "${gitPropertyRepo}"
-    gitPropertyRepoUrl = "${gitPropertyRepoUrl}"
-    gitcredID = ""
-    gitPropertyBranch = "${gitPropertyBranch}"
-    
-  }
-
-  options {
-    timestamps()
-    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3'))
-    disableConcurrentBuilds()
-  }
 
 }
 
