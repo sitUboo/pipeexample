@@ -87,7 +87,7 @@ pipeline {
          
          echo 'Checking Out CODE from '+checkoutBranch+''
             
-            checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: gitcredID, url: repoUrl]]]
+            checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: "", url: repoUrl]]]
 
             sh "ls -ltra"
             sh "pwd"
