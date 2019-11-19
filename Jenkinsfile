@@ -24,10 +24,14 @@ pipeline {
 
           //Checkout the propertyfile specified in the job configuration.
           echo "checking out the property file: " + propertyFile
-
-          checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: gitPropertyBranch]], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: gitcredID, url: gitPropertyRepoUrl]], extensions: [
-    [$class: 'DisableRemotePoll'],
-    [$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']] ]
+          echo "using the git property branch: " + gitPropertyBranch
+          
+          checkout changelog: false, poll: false, 
+            scm: [$class: 'GitSCM', branches: [[name: gitPropertyBranch]], 
+                  doGenerateSubmoduleConfigurations: false, extensions: [], 
+                  gitTool: 'Git_1.8.3.1', submoduleCfg: [], 
+                  userRemoteConfigs: [[credentialsId: gitcredID, url: gitPropertyRepoUrl]], extensions: [
+                    [$class: 'DisableRemotePoll'],[$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']] ]
 
           sh "ls -ltra"
           sh "pwd"
