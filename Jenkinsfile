@@ -30,7 +30,7 @@ pipeline {
             scm: [$class: 'GitSCM', branches: [[name: gitPropertyBranch]], 
                   doGenerateSubmoduleConfigurations: false, extensions: [], 
                   gitTool: 'Git_1.8.3.1', submoduleCfg: [], 
-                  userRemoteConfigs: [[credentialsId: gitcredID, url: gitPropertyRepoUrl]], extensions: [
+                  userRemoteConfigs: [[credentialsId: "", url: gitPropertyRepoUrl]], extensions: [
                     [$class: 'DisableRemotePoll'],[$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']] ]
 
           sh "ls -ltra"
