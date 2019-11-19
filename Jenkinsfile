@@ -30,7 +30,7 @@ pipeline {
       steps 
       {
         echo 'Clean workspace'
-        //cleanWs()
+        cleanWs()
       }
     }
 
@@ -85,16 +85,16 @@ pipeline {
       //Checkout code from the branch parameter only for the Build/dev job.
       stage('Checkout') {
       steps {
-         
-         echo 'Checking Out CODE from '+checkoutBranch+''
+         dir('project') {
+            echo 'Checking Out CODE from '+checkoutBranch+''
             
             checkout changelog: true, poll: true, scm: [$class: 'GitSCM', branches: [[name: 'master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_1.8.3.1', submoduleCfg: [], userRemoteConfigs: [[credentialsId: "", url: repoUrl]]]
 
             sh "ls -ltra"
             sh "pwd"
-
-          }
+         }
        }
+     }
 }
     
 
