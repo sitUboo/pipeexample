@@ -45,12 +45,13 @@ pipeline {
           echo "checking out the property file: " + propertyFile
           echo "using the git property branch: " + gitPropertyBranch
           
-          checkout changelog: false, poll: false, 
-            scm: [$class: 'GitSCM', branches: [[name: gitPropertyBranch]], 
-                  doGenerateSubmoduleConfigurations: false, extensions: [], 
-                  gitTool: 'Git_1.8.3.1', submoduleCfg: [], 
-                  userRemoteConfigs: [[credentialsId: "", url: gitPropertyRepoUrl]], extensions: [
-                    [$class: 'DisableRemotePoll'],[$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']] ]
+          checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: 'DEVOPS-5220']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sitUboo/pipeexample.git']]]
+//          checkout changelog: false, poll: false, 
+//            scm: [$class: 'GitSCM', branches: [[name: gitPropertyBranch]], 
+//                  doGenerateSubmoduleConfigurations: false, extensions: [], 
+//                  gitTool: 'Git_1.8.3.1', submoduleCfg: [], 
+//                  userRemoteConfigs: [[credentialsId: "", url: gitPropertyRepoUrl]], extensions: [
+//                    [$class: 'DisableRemotePoll'],[$class: 'PathRestriction', excludedRegions: '', includedRegions: '*']] ]
 
           sh "ls -ltra"
           sh "pwd"
