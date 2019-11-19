@@ -72,7 +72,7 @@ pipeline {
           pollingFrequency = property.pollingInterval
               
             //properties([[$class: 'JiraProjectProperty'], [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false], parameters([string(defaultValue: '', description: 'Enter the branch name.', name: 'BRANCH_NAME', trim: true)])])
-            //checkoutBranch = BRANCH_NAME
+          checkoutBranch = 'master'
           
 
           }
