@@ -4,7 +4,8 @@ properties([parameters([extendedChoice(description: '', multiSelectDelimiter: ',
 node {
     checkout scm
      sh '''
-        if[[ -n env.VERSION ]];then
+        if [ -n env.VERSION ]
+        then
             git checkout ${env.VERSION}
         fi
        '''
