@@ -4,9 +4,9 @@ properties([parameters([extendedChoice(description: '', multiSelectDelimiter: ',
 node {
     checkout scm
      sh '''
-        if [ -n env.VERSION ]
+        if [ -n ${VERSION} ]
         then
-            git checkout ${env.VERSION}
+            git checkout ${VERSION}
         fi
        '''
     echo "Our choice ${myChoice}"
